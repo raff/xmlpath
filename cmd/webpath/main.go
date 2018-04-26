@@ -3,12 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
-	"gopkg.in/xmlpath.v2"
 	"io"
 	"net/http"
 	"os"
 	"regexp"
 	"strings"
+
+	"github.com/raff/xmlpath"
 )
 
 var all = flag.Bool("all", false, "print all occurrences rather than the first one")
