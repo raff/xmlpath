@@ -8,6 +8,7 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/raff/xmlpath"
 )
@@ -44,7 +45,22 @@ func run() error {
 
 	var body io.Reader
 	if strings.HasPrefix(loc, "https:") || strings.HasPrefix(loc, "http:") {
-		resp, err := http.Get(args[1])
+		var resp *http.Response
+		var err error
+
+		for i := 0; i < 5; i++ {
+			if i > 0 {
+				time.Sleep(13 * time.Second)
+			}
+
+			resp, err = http.Get(args[1])
+			if err == nil {
+				break
+			}
+
+			fmt.Printf("%v: %v", i, err)
+		}
+
 		if err != nil {
 			return err
 		}
