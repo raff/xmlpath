@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"io"
 	"net/http"
 	"os"
@@ -58,7 +59,7 @@ func run() error {
 				break
 			}
 
-			fmt.Printf("%v: %v", i, err)
+			log.Printf("%v: %v\n", i, err)
 		}
 
 		if err != nil {

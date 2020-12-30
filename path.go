@@ -404,7 +404,7 @@ const (
 
 type positionPredicate struct {
 	pos int
-	op Operator
+	op  Operator
 }
 
 type lastPredicate struct{}
@@ -630,7 +630,7 @@ func (c *pathCompiler) parsePath() (path *Path, err error) {
 				c.skipSpaces()
 				pos, ok2 := c.parseInt()
 
-				if (!ok || !ok2) {
+				if !ok || !ok2 {
 					return nil, c.errorf("invalid position() predicate")
 				}
 				next = positionPredicate{pos, op}
