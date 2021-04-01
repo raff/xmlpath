@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"regexp"
@@ -67,6 +67,8 @@ func run() error {
 		}
 		defer resp.Body.Close()
 		body = resp.Body
+	} else if loc == "-" {
+		body = os.Stdin
 	} else {
 		file, err := os.Open(loc)
 		if err != nil {
